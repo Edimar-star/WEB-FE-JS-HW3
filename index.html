@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding JavaScript Async</title>
+
+    <!-- Prism.js CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+
+    <!-- Prism.js JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScript Async Concepts Explained</h1>
+    </header>
+
+    <main>
+        <section id="async">
+            <h2>1. JavaScript Async</h2>
+            <p>JavaScript Async is the mechanism that allows operations to be performed in the background, without blocking the main thread.</p>
+            <pre><code class="language-js">
+console.log("Start");
+
+setTimeout(() => {
+    console.log("This is async");
+}, 2000);
+
+console.log("End");
+            </code></pre>
+        </section>
+
+        <section id="callback">
+            <h2>2. Callback</h2>
+            <p>A callback is a function passed into another function as an argument, which is invoked after the main function has finished executing.</p>
+            <pre><code class="language-js">
+function greeting(name) {
+    console.log('Hello ' + name);
+}
+
+function processUserInput(callback) {
+    const name = 'John';
+    callback(name);
+}
+
+processUserInput(greeting);
+            </code></pre>
+        </section>
+
+        <section id="promise">
+            <h2>3. Promise</h2>
+            <p>A promise is an object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value.</p>
+            <pre><code class="language-js">
+let promise = new Promise((resolve, reject) => {
+    let success = true;
+    if (success) {
+        resolve("Operation successful");
+    } else {
+        reject("Operation failed");
+    }
+});
+
+promise.then((message) => {
+    console.log(message);
+}).catch((message) => {
+    console.log(message);
+});
+            </code></pre>
+        </section>
+
+        <section id="async-await">
+            <h2>4. Async/Await</h2>
+            <p>Async/Await is syntactic sugar built on top of promises, allowing you to write asynchronous code in a synchronous-looking style.</p>
+            <pre><code class="language-js">
+async function fetchData() {
+    let response = await fetch('https://api.example.com/data');
+    let data = await response.json();
+    console.log(data);
+}
+
+fetchData();
+            </code></pre>
+        </section>
+
+        <section id="event-loop">
+            <h2>5. Event Loop</h2>
+            <p>The event loop is a mechanism that allows JavaScript to perform non-blocking I/O operations, despite being single-threaded, by offloading operations to the system's background (e.g., async APIs).</p>
+            <pre><code class="language-js">
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Callback");
+}, 0);
+
+console.log("End");
+            </code></pre>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 JavaScript Blog</p>
+    </footer>
+</body>
+</html>
